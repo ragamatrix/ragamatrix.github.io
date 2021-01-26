@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>the photo is made through musical inspiration</title>
+    <link>https://ragamatrix.github.io/</link>
+    <description>Recent content on the photo is made through musical inspiration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://ragamatrix.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://ragamatrix.github.io/photo/04-warmth/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ragamatrix.github.io/photo/04-warmth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>b l a c k and w h i t e</title>
+      <link>https://ragamatrix.github.io/photo/06-bnw/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ragamatrix.github.io/photo/06-bnw/</guid>
+      <description>src: landscape_panorama.png name: Panorama params: order: light description: Use the &amp;ldquo;title&amp;rdquo; field on top of this file to specify a series name for a stylized appearance. It is hidden if &amp;ldquo;title&amp;rdquo; is unspecified.
+  src: portrait.png name: Portrait params: order: dark description: You don&amp;rsquo;t have to use a number for ordering. Using text is also possible. This could be helpful if you wish to arrange photos by their color scheme</description>
+    </item>
+    
+    <item>
+      <title>From N.Y.K 2014</title>
+      <link>https://ragamatrix.github.io/photo/01-nyk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ragamatrix.github.io/photo/01-nyk/</guid>
+      <description> src: square.jpg name: In the Villa Seerose, Horgen params: order: 6 description: Light through the window  </description>
+    </item>
+    
+    <item>
+      <title>i n -  t h e - s k y</title>
+      <link>https://ragamatrix.github.io/photo/02-in-the-sky/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ragamatrix.github.io/photo/02-in-the-sky/</guid>
+      <description>src: 241.jgp name: 241 params: order: light description: Use the &amp;ldquo;title&amp;rdquo; field on top of this file to specify a series name for a stylized appearance. It is hidden if &amp;ldquo;title&amp;rdquo; is unspecified.
+  src: 223.jpg name: summer params: order: dark description: You don&amp;rsquo;t have to use a number for ordering. Using text is also possible. This could be helpful if you wish to arrange photos by their color scheme</description>
+    </item>
+    
+    <item>
+      <title>o n -  t h e - r o a d</title>
+      <link>https://ragamatrix.github.io/photo/05-on-the-road/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ragamatrix.github.io/photo/05-on-the-road/</guid>
+      <description>src: Ford Mustang.png name: dangerous and seductive params: order: 1 description: cinematic atmosphere, on the way back at night. The colours, the night and the rain convinced me to make this picture.
+  button_text: Button text
+  button_url: &amp;ldquo;https://example.com&amp;rdquo;
+  src: Ford Mustang V2.JPG name: D R I V E params: order: dark description: You don&amp;rsquo;t have to use a number for ordering. Using text is also possible.</description>
+    </item>
+    
+  </channel>
+</rss>
