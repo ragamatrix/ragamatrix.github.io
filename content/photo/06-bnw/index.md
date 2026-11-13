@@ -1,7 +1,7 @@
 ---
 resources:
 title: b l a c k and w h i t e
-  - src: flashing_the_snow.jpg
+   src: flashing_the_snow.jpg
     name: flashing_the_snow
     params:
       order: light
