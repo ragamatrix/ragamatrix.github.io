@@ -1,7 +1,11 @@
 ---
-resources:
 title: b l a c k and w h i t e
-
+resources:
+  - src: flashing_the_snow.jpg
+    name: Flashing the snow
+    params:
+      order: 1
+      description: flashing the snow at night 
 ---
 - src: landscape_panorama.png
   name: Panorama
