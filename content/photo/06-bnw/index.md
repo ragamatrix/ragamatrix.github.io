@@ -1,11 +1,12 @@
 ---
 resources:
 title: b l a c k and w h i t e
+
    src: flashing_the_snow.jpg
-    name: flashing_the_snow
+   name: flashing_the_snow
     params:
       order: light
-      description: Once upon a time a snowy night
+
 ---
 - src: landscape_panorama.png
   name: Panorama
