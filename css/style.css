@@ -83,11 +83,33 @@ a:hover { color: var(--accent); }
   color: var(--muted);
 }
 .ig-link:hover { color: var(--accent); }
-.ig-link svg { width: 16px; height: 16px; }
+.ig-link svg, .mail-link svg { width: 16px; height: 16px; flex: none; }
+
+.header-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+.mail-link:hover { color: var(--accent); }
+
+/* texte e-mail masqué sur écrans étroits */
+@media (max-width: 1080px) {
+  .mail-link span { display: none; }
+}
 
 @media (max-width: 560px) {
   .ig-link span { display: none; }
-  .ig-link { padding: 6px; margin-left: -6px; }
+  .ig-link, .mail-link { padding: 4px; }
   .site-header { position: static; }
   .hero { padding-top: 40px; }
 }
