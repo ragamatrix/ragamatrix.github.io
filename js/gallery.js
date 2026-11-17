@@ -5,6 +5,14 @@
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
 
+  /* ---------- protection des images ---------- */
+  document.addEventListener("contextmenu", function (e) {
+    if (e.target.tagName === "IMG" || e.target.closest(".item, .lb-figure")) e.preventDefault();
+  });
+  document.addEventListener("dragstart", function (e) {
+    if (e.target.tagName === "IMG") e.preventDefault();
+  });
+
   /* ---------- fondu d'apparition des images ---------- */
   items.forEach(function (item) {
     var img = item.querySelector("img");

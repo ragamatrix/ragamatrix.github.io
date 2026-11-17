@@ -36,6 +36,35 @@ body {
 
 img { max-width: 100%; }
 
+/* protection des images : ni sélection ni glissement */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* calque transparent au-dessus des vignettes : bloque
+   le clic droit « Enregistrer l'image sous » */
+.item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.lb-figure {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+.lb-figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 a { color: var(--text); text-decoration: none; transition: color .25s; }
 a:hover { color: var(--accent); }
 
