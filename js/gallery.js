@@ -2,7 +2,6 @@
 (function () {
   "use strict";
 
-  /* Ajoute automatiquement les photos horizontales Street déjà présentes dans /photo. */
   var grid = document.getElementById("grid");
   if (grid) {
     for (var n = 1; n <= 42; n += 1) {
@@ -71,20 +70,11 @@
     grid.appendChild(pngFigure);
   }
 
-  /* Retire de la galerie les photos de ces catégories, sans supprimer les filtres ni les fichiers. */
-  Array.prototype.forEach.call(
-    document.querySelectorAll('.item[data-collection="bnw"], .item[data-collection="landscape"], .item[data-collection="night"]'),
-    function (item) { item.remove(); }
-  );
-
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
-
-  /* Met à jour le nombre total de photographies. */
   var photoCount = document.querySelector(".hero .meta span b");
   if (photoCount) photoCount.textContent = items.length;
 
-  /* ---------- protection des images ---------- */
   document.addEventListener("contextmenu", function (e) {
     if (e.target.tagName === "IMG" || e.target.closest(".item, .lb-figure")) e.preventDefault();
   });
@@ -92,7 +82,6 @@
     if (e.target.tagName === "IMG") e.preventDefault();
   });
 
-  /* ---------- fondu d'apparition des images ---------- */
   items.forEach(function (item) {
     var img = item.querySelector("img");
     if (!img) return;
@@ -104,23 +93,19 @@
     }
   });
 
-  /* ---------- filtres ---------- */
   filterBtns.forEach(function (btn) {
     btn.addEventListener("click", function () {
       filterBtns.forEach(function (b) { b.classList.remove("active"); });
       btn.classList.add("active");
       var f = btn.getAttribute("data-filter");
       items.forEach(function (item) {
-        var show = f === "all" || item.getAttribute("data-collection") === f;
-        item.classList.toggle("hidden", !show);
+        item.classList.toggle("hidden", f !== "all" && item.getAttribute("data-collection") !== f);
       });
     });
   });
 
-  /* ---------- visionneuse ---------- */
   var lightbox = document.getElementById("lightbox");
-  if (!lightbox) return;
-
+  if (!lightbox || !grid) return;
   var lbImg = lightbox.querySelector(".lightbox-stage img");
   var lbTitle = lightbox.querySelector(".lightbox-caption .t");
   var lbCollection = lightbox.querySelector(".lightbox-caption .collection");
@@ -132,17 +117,17 @@
   lbImg.addEventListener("error", function () { lbImg.classList.add("loaded"); });
 
   function visibleItems() {
-    return items.filter(function (i) { return !i.classList.contains("hidden"); });
+    return items.filter(function (item) { return !item.classList.contains("hidden"); });
   }
 
   function show(index) {
     var list = visibleItems();
+    if (!list.length) return;
     if (index < 0) index = list.length - 1;
     if (index >= list.length) index = 0;
     current = index;
     var item = list[index];
     var img = item.querySelector("img");
-
     lbImg.classList.remove("loaded");
     var src = item.getAttribute("data-large") || img.src;
     if (lbImg.dataset.cur === src && lbImg.complete) {
@@ -152,19 +137,17 @@
       lbImg.src = src;
     }
     lbImg.alt = img.alt;
-
     lbTitle.textContent = item.getAttribute("data-title") || "";
     lbCollection.textContent = item.getAttribute("data-collection-label") || "";
     var exif = item.getAttribute("data-exif") || "";
     lbExif.textContent = exif;
     lbExif.style.display = exif ? "" : "none";
-
     lbCounter.textContent = (index + 1) + " / " + list.length;
   }
 
   function open(item) {
-    var list = visibleItems();
-    show(list.indexOf(item));
+    if (!item || item.classList.contains("hidden")) return;
+    show(visibleItems().indexOf(item));
     lightbox.classList.add("open");
     document.body.style.overflow = "hidden";
   }
@@ -174,27 +157,27 @@
     document.body.style.overflow = "";
   }
 
-  items.forEach(function (item) {
-    item.addEventListener("click", function (e) {
+  /* Délégation pour rendre cliquables toutes les photos, y compris celles créées dynamiquement. */
+  grid.addEventListener("click", function (e) {
+    var item = e.target.closest(".item");
+    if (!item || !grid.contains(item)) return;
+    e.preventDefault();
+    open(item);
+  });
+  grid.addEventListener("keydown", function (e) {
+    var item = e.target.closest(".item");
+    if (item && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
       open(item);
-    });
-    item.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        open(item);
-      }
-    });
+    }
   });
 
   lightbox.querySelector(".lightbox-close").addEventListener("click", close);
   lightbox.querySelector(".lightbox-nav.prev").addEventListener("click", function () { show(current - 1); });
   lightbox.querySelector(".lightbox-nav.next").addEventListener("click", function () { show(current + 1); });
-
   lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox || e.target.classList.contains("lightbox-stage")) close();
   });
-
   document.addEventListener("keydown", function (e) {
     if (!lightbox.classList.contains("open")) return;
     if (e.key === "Escape") close();
@@ -203,9 +186,7 @@
   });
 
   var startX = null;
-  lightbox.addEventListener("touchstart", function (e) {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
+  lightbox.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
   lightbox.addEventListener("touchend", function (e) {
     if (startX === null) return;
     var dx = e.changedTouches[0].clientX - startX;
