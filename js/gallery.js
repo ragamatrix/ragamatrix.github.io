@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  /* Ajoute les photos horizontales Street présentes dans /photo. */
+  /* Ajoute automatiquement les photos horizontales Street déjà présentes dans /photo. */
   var grid = document.getElementById("grid");
   if (grid) {
     for (var n = 1; n <= 42; n += 1) {
@@ -70,6 +70,12 @@
     pngFigure.appendChild(pngCaption);
     grid.appendChild(pngFigure);
   }
+
+  /* Retire de la galerie les photos de ces catégories, sans supprimer les filtres ni les fichiers. */
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.item[data-collection="bnw"], .item[data-collection="landscape"], .item[data-collection="night"]'),
+    function (item) { item.remove(); }
+  );
 
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
@@ -152,6 +158,7 @@
     var exif = item.getAttribute("data-exif") || "";
     lbExif.textContent = exif;
     lbExif.style.display = exif ? "" : "none";
+
     lbCounter.textContent = (index + 1) + " / " + list.length;
   }
 
@@ -195,7 +202,6 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  /* navigation par glissement tactile */
   var startX = null;
   lightbox.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
