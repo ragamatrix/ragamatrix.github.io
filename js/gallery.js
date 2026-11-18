@@ -70,6 +70,11 @@
     grid.appendChild(pngFigure);
   }
 
+  /* Reserve mobile lightbox space for the controls and account for phone browser chrome. */
+  var mobileLightboxStyles = document.createElement("style");
+  mobileLightboxStyles.textContent = "@media (max-width: 560px) { .lightbox { height: 100vh; height: 100dvh; padding-bottom: env(safe-area-inset-bottom); } .lightbox-stage { padding-left: 54px; padding-right: 54px; touch-action: pan-y; } .lightbox-stage img { max-height: calc(100vh - 180px); max-height: calc(100dvh - 180px); object-fit: contain; } .lightbox-nav { z-index: 3; width: 44px; height: 44px; } .lightbox-nav.prev { left: 5px; } .lightbox-nav.next { right: 5px; } .lb-figure { z-index: 1; } }";
+  document.head.appendChild(mobileLightboxStyles);
+
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
   var photoCount = document.querySelector(".hero .meta span b");
@@ -157,7 +162,6 @@
     document.body.style.overflow = "";
   }
 
-  /* Délégation pour rendre cliquables toutes les photos, y compris celles créées dynamiquement. */
   grid.addEventListener("click", function (e) {
     var item = e.target.closest(".item");
     if (!item || !grid.contains(item)) return;
@@ -185,12 +189,18 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  var startX = null;
-  lightbox.addEventListener("touchstart", function (e) { startX = e.touches[0].clientX; }, { passive: true });
+  var startTouch = null;
+  lightbox.addEventListener("touchstart", function (e) {
+    var stage = e.target.closest(".lightbox-stage");
+    startTouch = stage ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
   lightbox.addEventListener("touchend", function (e) {
-    if (startX === null) return;
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) show(dx < 0 ? current + 1 : current - 1);
-    startX = null;
+    if (!startTouch) return;
+    var dx = e.changedTouches[0].clientX - startTouch.x;
+    var dy = e.changedTouches[0].clientY - startTouch.y;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      show(dx < 0 ? current + 1 : current - 1);
+    }
+    startTouch = null;
   }, { passive: true });
 })();
