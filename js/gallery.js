@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  /* Ajoute automatiquement les photos horizontales Street déjà présentes dans /photo. */
+  /* Ajoute les photos horizontales Street présentes dans /photo. */
   var grid = document.getElementById("grid");
   if (grid) {
     for (var n = 1; n <= 42; n += 1) {
@@ -152,7 +152,6 @@
     var exif = item.getAttribute("data-exif") || "";
     lbExif.textContent = exif;
     lbExif.style.display = exif ? "" : "none";
-
     lbCounter.textContent = (index + 1) + " / " + list.length;
   }
 
@@ -170,7 +169,7 @@
 
   items.forEach(function (item) {
     item.addEventListener("click", function (e) {
-      e.preventEventDefault();
+      e.preventDefault();
       open(item);
     });
     item.addEventListener("keydown", function (e) {
@@ -196,6 +195,7 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
+  /* navigation par glissement tactile */
   var startX = null;
   lightbox.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
