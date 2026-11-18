@@ -1,0 +1,56 @@
+/* Mobile and slow-network gallery visibility fixes. */
+.item img {
+  /* Never hide a photo while waiting for load/decode events; some mobile browsers
+     can complete a failed or cached request before JavaScript attaches listeners. */
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 560px) {
+  .grid {
+    columns: 1;
+    column-count: 1;
+  }
+
+  .item {
+    width: 100%;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+
+  .item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .lightbox {
+    height: 100vh;
+    height: 100dvh;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .lightbox-stage {
+    padding-left: 52px;
+    padding-right: 52px;
+    touch-action: pan-y;
+  }
+
+  .lightbox-stage img {
+    max-width: 100%;
+    max-height: calc(100vh - 180px);
+    max-height: calc(100dvh - 180px);
+    object-fit: contain;
+  }
+
+  .lightbox-nav {
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    touch-action: manipulation;
+  }
+
+  .lightbox-nav.prev { left: 4px; }
+  .lightbox-nav.next { right: 4px; }
+
+  .lb-figure::after { pointer-events: none; }
+}
