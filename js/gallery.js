@@ -2,8 +2,50 @@
 (function () {
   "use strict";
 
+  /* Les photos Street sont stockées dans /photo à la racine du dépôt. */
+  var grid = document.getElementById("grid");
+  if (grid) {
+    for (var n = 1; n <= 25; n += 1) {
+      var number = String(n);
+      var src = "photo/street_" + number + ".jpeg";
+      var figure = document.createElement("figure");
+      figure.className = "item";
+      figure.setAttribute("data-collection", "street");
+      figure.setAttribute("data-collection-label", "Street");
+      figure.setAttribute("data-title", "Street " + number);
+      figure.setAttribute("data-large", src);
+      figure.setAttribute("data-exif", "");
+      figure.setAttribute("tabindex", "0");
+      figure.setAttribute("role", "button");
+      figure.setAttribute("aria-label", "View Street " + number + " full size");
+
+      var img = document.createElement("img");
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.src = src;
+      img.alt = "Street " + number;
+
+      var caption = document.createElement("figcaption");
+      var title = document.createElement("span");
+      title.className = "t";
+      title.textContent = "Street " + number;
+      var label = document.createElement("span");
+      label.className = "c";
+      label.textContent = "Street";
+      caption.appendChild(title);
+      caption.appendChild(label);
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      grid.appendChild(figure);
+    }
+  }
+
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
+
+  /* Met à jour le total affiché dans l'introduction. */
+  var photoCount = document.querySelector(".hero .meta span b");
+  if (photoCount) photoCount.textContent = items.length;
 
   /* ---------- protection des images ---------- */
   document.addEventListener("contextmenu", function (e) {
@@ -99,6 +141,12 @@
     item.addEventListener("click", function (e) {
       e.preventDefault();
       open(item);
+    });
+    item.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        open(item);
+      }
     });
   });
 
