@@ -2,33 +2,33 @@
 (function () {
   "use strict";
 
-  /* Les photos Street sont stockées dans /photo à la racine du dépôt. */
+  /* Ajoute automatiquement les photos horizontales Street déjà présentes dans /photo. */
   var grid = document.getElementById("grid");
   if (grid) {
-    for (var n = 1; n <= 25; n += 1) {
+    for (var n = 1; n <= 42; n += 1) {
       var number = String(n);
-      var src = "photo/street_" + number + ".jpeg";
+      var src = "photo/street_H_" + number + ".jpeg";
       var figure = document.createElement("figure");
       figure.className = "item";
       figure.setAttribute("data-collection", "street");
       figure.setAttribute("data-collection-label", "Street");
-      figure.setAttribute("data-title", "Street " + number);
+      figure.setAttribute("data-title", "Street horizontal " + number);
       figure.setAttribute("data-large", src);
       figure.setAttribute("data-exif", "");
       figure.setAttribute("tabindex", "0");
       figure.setAttribute("role", "button");
-      figure.setAttribute("aria-label", "View Street " + number + " full size");
+      figure.setAttribute("aria-label", "View Street horizontal " + number + " full size");
 
       var img = document.createElement("img");
       img.loading = "lazy";
       img.decoding = "async";
       img.src = src;
-      img.alt = "Street " + number;
+      img.alt = "Street horizontal " + number;
 
       var caption = document.createElement("figcaption");
       var title = document.createElement("span");
       title.className = "t";
-      title.textContent = "Street " + number;
+      title.textContent = "Street horizontal " + number;
       var label = document.createElement("span");
       label.className = "c";
       label.textContent = "Street";
@@ -38,12 +38,43 @@
       figure.appendChild(caption);
       grid.appendChild(figure);
     }
+
+    var pngSrc = "photo/street_H_1.png";
+    var pngFigure = document.createElement("figure");
+    pngFigure.className = "item";
+    pngFigure.setAttribute("data-collection", "street");
+    pngFigure.setAttribute("data-collection-label", "Street");
+    pngFigure.setAttribute("data-title", "Street horizontal 1 PNG");
+    pngFigure.setAttribute("data-large", pngSrc);
+    pngFigure.setAttribute("data-exif", "");
+    pngFigure.setAttribute("tabindex", "0");
+    pngFigure.setAttribute("role", "button");
+    pngFigure.setAttribute("aria-label", "View Street horizontal 1 PNG full size");
+
+    var pngImg = document.createElement("img");
+    pngImg.loading = "lazy";
+    pngImg.decoding = "async";
+    pngImg.src = pngSrc;
+    pngImg.alt = "Street horizontal 1 PNG";
+
+    var pngCaption = document.createElement("figcaption");
+    var pngTitle = document.createElement("span");
+    pngTitle.className = "t";
+    pngTitle.textContent = "Street horizontal 1 PNG";
+    var pngLabel = document.createElement("span");
+    pngLabel.className = "c";
+    pngLabel.textContent = "Street";
+    pngCaption.appendChild(pngTitle);
+    pngCaption.appendChild(pngLabel);
+    pngFigure.appendChild(pngImg);
+    pngFigure.appendChild(pngCaption);
+    grid.appendChild(pngFigure);
   }
 
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
   var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
 
-  /* Met à jour le total affiché dans l'introduction. */
+  /* Met à jour le nombre total de photographies. */
   var photoCount = document.querySelector(".hero .meta span b");
   if (photoCount) photoCount.textContent = items.length;
 
@@ -139,7 +170,7 @@
 
   items.forEach(function (item) {
     item.addEventListener("click", function (e) {
-      e.preventDefault();
+      e.preventEventDefault();
       open(item);
     });
     item.addEventListener("keydown", function (e) {
@@ -165,7 +196,6 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  /* navigation par glissement tactile */
   var startX = null;
   lightbox.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
