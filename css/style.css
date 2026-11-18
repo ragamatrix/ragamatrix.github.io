@@ -43,14 +43,8 @@ img {
   -webkit-touch-callout: none;
 }
 
-/* calque transparent au-dessus des vignettes : bloque
-   le clic droit « Enregistrer l'image sous » */
-.item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
+/* La protection contre le clic droit est gérée par JavaScript pour ne pas bloquer les clics. */
+.item::after { content: none; }
 
 .lb-figure {
   position: relative;
@@ -131,7 +125,6 @@ a:hover { color: var(--accent); }
 }
 .mail-link:hover { color: var(--accent); }
 
-/* texte e-mail masqué sur écrans étroits */
 @media (max-width: 1080px) {
   .mail-link span { display: none; }
 }
