@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap');
 
 /* ============================================================
    ragamatrix — galerie photo
@@ -183,16 +183,16 @@ a:hover { color: var(--accent); }
 
 .hero h1 {
   margin: 0;
-  font-family: "VT323", monospace;
-  font-weight: 400;
-  font-size: clamp(5rem, 12vw, 10rem);
-  line-height: 0.82;
-  letter-spacing: 0;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
   color: #41887c;
 }
 .hero h1 em {
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   color: #fef41e;
 }
 
