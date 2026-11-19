@@ -68,11 +68,48 @@
     pngFigure.appendChild(pngImg);
     pngFigure.appendChild(pngCaption);
     grid.appendChild(pngFigure);
+
+    var nightNames = [
+      "0001","0002","0003","002","004","02","10","100","11","12","13","14","15","16","17","18","19","2","20","21","22","23","24","25","26","29","3","30","31","32","34","35","36","37","38","39","4","42","43","44","45","46","47","48","5","50","51","52","53","54","55","56","59","6","60","601","61","62","63","64","65","66","69","70","71","72","73","74","75","76","77","78","79","8","81","82","83","85","86","88","89","91","92","93","94","95","96","97","98","99"
+    ];
+
+    nightNames.forEach(function (name) {
+      var src = "photo/night_V" + name + ".jpeg";
+      var figure = document.createElement("figure");
+      figure.className = "item";
+      figure.setAttribute("data-collection", "night");
+      figure.setAttribute("data-collection-label", "Night");
+      figure.setAttribute("data-title", "Night " + name);
+      figure.setAttribute("data-large", src);
+      figure.setAttribute("data-exif", "");
+      figure.setAttribute("tabindex", "0");
+      figure.setAttribute("role", "button");
+      figure.setAttribute("aria-label", "View night photo " + name + " full size");
+
+      var img = document.createElement("img");
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.src = src;
+      img.alt = "Night " + name;
+
+      var caption = document.createElement("figcaption");
+      var title = document.createElement("span");
+      title.className = "t";
+      title.textContent = "Night " + name;
+      var label = document.createElement("span");
+      label.className = "c";
+      label.textContent = "Night";
+      caption.appendChild(title);
+      caption.appendChild(label);
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      grid.appendChild(figure);
+    });
   }
 
   /* Reserve mobile lightbox space for the controls and account for phone browser chrome. */
   var mobileLightboxStyles = document.createElement("style");
-  mobileLightboxStyles.textContent = "@media (max-width: 560px) { .lightbox { height: 100vh; height: 100dvh; padding-bottom: env(safe-area-inset-bottom); } .lightbox-stage { padding-left: 54px; padding-right: 54px; touch-action: pan-y; } .lightbox-stage img { max-height: calc(100vh - 180px); max-height: calc(100dvh - 180px); object-fit: contain; } .lightbox-nav { z-index: 3; width: 44px; height: 44px; } .lightbox-nav.prev { left: 5px; } .lightbox-nav.next { right: 5px; } .lb-figure { z-index: 1; } }";
+  mobileLightboxStyles.textContent = "@media (max-width: 560px) { .lightbox { height: 100vh; height: 100dvh; padding-bottom: env(safe-area-inset-bottom); } .lightbox-stage { padding-left: 54px; padding-right: 54px; } }";
   document.head.appendChild(mobileLightboxStyles);
 
   var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
