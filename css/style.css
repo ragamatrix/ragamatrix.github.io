@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 /* ============================================================
    ragamatrix — galerie photo
@@ -183,16 +183,16 @@ a:hover { color: var(--accent); }
 
 .hero h1 {
   margin: 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
-  font-size: clamp(2.8rem, 8vw, 6.4rem);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-size: clamp(5rem, 12vw, 10rem);
+  line-height: 0.82;
+  letter-spacing: 0;
   color: #41887c;
 }
 .hero h1 em {
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   color: #fef41e;
 }
 
