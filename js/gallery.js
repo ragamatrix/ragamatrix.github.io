@@ -105,6 +105,43 @@
       figure.appendChild(caption);
       grid.appendChild(figure);
     });
+
+    var horizontalNightNames = [
+      "001","01","1","10","11","12","14","15","16","17","18","19","2","20","21","22","23","24","25","26","28","31","32","33","34","35","37","38","4","40","41","42","43","44","45","47","48","5","50","51","52","53","54","55","56","59","60","62","63","66","68","69","7","70","8","9"
+    ];
+
+    horizontalNightNames.forEach(function (number) {
+      var src = "photo/night_H" + number + ".jpeg";
+      var figure = document.createElement("figure");
+      figure.className = "item";
+      figure.setAttribute("data-collection", "night");
+      figure.setAttribute("data-collection-label", "Night");
+      figure.setAttribute("data-title", "Night horizontal " + number);
+      figure.setAttribute("data-large", src);
+      figure.setAttribute("data-exif", "");
+      figure.setAttribute("tabindex", "0");
+      figure.setAttribute("role", "button");
+      figure.setAttribute("aria-label", "View horizontal night photo " + number + " full size");
+
+      var img = document.createElement("img");
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.src = src;
+      img.alt = "Night horizontal " + number;
+
+      var caption = document.createElement("figcaption");
+      var title = document.createElement("span");
+      title.className = "t";
+      title.textContent = "Night horizontal " + number;
+      var label = document.createElement("span");
+      label.className = "c";
+      label.textContent = "Night";
+      caption.appendChild(title);
+      caption.appendChild(label);
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      grid.appendChild(figure);
+    });
   }
 
   /* Reserve mobile lightbox space for the controls and account for phone browser chrome. */
