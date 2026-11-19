@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 /* ============================================================
    ragamatrix — galerie photo
    Refonte : sombre moderne, grande grille pleine page
@@ -181,17 +183,17 @@ a:hover { color: var(--accent); }
 
 .hero h1 {
   margin: 0;
-  font-family: var(--font-display);
-  font-weight: 480;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
   font-size: clamp(2.8rem, 8vw, 6.4rem);
   line-height: 1.02;
   letter-spacing: -0.015em;
-  font-variation-settings: "opsz" 144;
+  color: #41887c;
 }
 .hero h1 em {
-  font-style: italic;
-  font-weight: 380;
-  color: var(--accent);
+  font-style: normal;
+  font-weight: 600;
+  color: #fef41e;
 }
 
 .hero .subtitle {
